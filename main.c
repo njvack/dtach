@@ -36,6 +36,8 @@ int detach_char = '\\' - 64;
 int no_suspend;
 /* The default redraw method. Initially set to unspecified. */
 int redraw_method = REDRAW_UNSPEC;
+/* 1 if we don't want to clear the terminal after attaching */
+int clear_after_attach = 1;
 
 /*
 ** The original terminal settings. Shared between the master and attach
@@ -69,6 +71,7 @@ usage()
 		"  -p\t\tCopy the contents of standard input to the specified\n"
 		"\t\t  socket.\n"
 		"Options:\n"
+    "  -C\t\tDon't clear the terminal after attaching.\n"
 		"  -e <char>\tSet the detach character to <char>, defaults "
 		"to ^\\.\n"
 		"  -E\t\tDisable the detach character.\n"
@@ -158,6 +161,8 @@ main(int argc, char **argv)
 				detach_char = -1;
 			else if (*p == 'z')
 				no_suspend = 1;
+      else if (*p == 'C')
+        clear_after_attach = 0;
 			else if (*p == 'e')
 			{
 				++argv; --argc;

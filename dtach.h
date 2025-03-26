@@ -81,7 +81,7 @@
 #endif
 
 extern char *progname, *sockname;
-extern int detach_char, no_suspend, redraw_method;
+extern int detach_char, no_suspend, redraw_method, clear_after_attach;
 extern struct termios orig_term;
 extern int dont_have_tty;
 
